@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XQCustomTableView : UITableView
 
++ (instancetype)tableViewWithFrame:(CGRect)frame headerHeight:(CGFloat)height;
+
 @property(weak, readonly, nullable, nonatomic) XQHeaderView *headerView;
 /**默认为0.5，移动到定点的时候图片移动到中点*/
 @property(assign, nonatomic) CGFloat pushUpMovingRate;

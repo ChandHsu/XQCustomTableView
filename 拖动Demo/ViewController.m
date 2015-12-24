@@ -26,10 +26,10 @@
 }
 
 - (void)_initView {
-    XQCustomTableView * tableView = [[XQCustomTableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+//    XQCustomTableView * tableView = [[XQCustomTableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    XQCustomTableView * tableView = [XQCustomTableView tableViewWithFrame:self.view.bounds headerHeight:400];
     [self.view addSubview:tableView];
     _tableView = tableView;
-    _tableView.heightForHeader = 400;
     tableView.translatesAutoresizingMaskIntoConstraints = false;
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[tableView]|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:NSDictionaryOfVariableBindings(tableView)]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[tableView]|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:NSDictionaryOfVariableBindings(tableView)]];

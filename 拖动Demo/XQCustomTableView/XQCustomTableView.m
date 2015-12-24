@@ -14,6 +14,12 @@
 
 @implementation XQCustomTableView
 
+static CGFloat headerViewH = 232;
++(instancetype)tableViewWithFrame:(CGRect)frame headerHeight:(CGFloat)height{
+    headerViewH = height;
+    return [[self alloc] initWithFrame:frame style:UITableViewStylePlain];
+}
+
 - (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
     if (self = [super initWithFrame:frame style:style]) {
         [self _initView];
@@ -30,7 +36,6 @@
     return self;
 }
 
-static CGFloat headerViewH = 232;
 - (void)_initView {
     XQHeaderView * headerView = [[XQHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, headerViewH)];
     [self addSubview:headerView];
@@ -50,6 +55,7 @@ static CGFloat headerViewH = 232;
 
 - (void)setContentOffset:(CGPoint)contentOffset {
     CGPoint offset = contentOffset;
+    
     if (offset.y < -headerViewH) {
         //放大:向下移动距离为偏移的一半，并放大
         _headerView.hidden = false;
@@ -75,15 +81,5 @@ static CGFloat headerViewH = 232;
     [self insertSubview:_headerView atIndex:0];
 }
 
-- (void)setHeightForHeader:(CGFloat)heightForHeader{
-    _heightForHeader = heightForHeader;
-    
-    self.contentInset = UIEdgeInsetsMake(heightForHeader, 0, 0, 0);
-    self.contentOffset = CGPointMake(0, -heightForHeader);
-    CGRect frame = self.headerView.frame;
-    frame.size.height = heightForHeader;
-    self.headerView.frame = frame;
-    
-}
 
 @end
